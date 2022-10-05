@@ -5,9 +5,9 @@ import pro.sky.course2.employeebook.Employee.Employee;
 import java.util.Collection;
 
 public interface EmployeeService {
-    Employee addEmployee(String firstName, String lastName);
-    Employee deleteEmployee(String firstName, String lastName);
-    Employee findEmployee(String firstName, String lastName);
+    Employee addEmployee(String firstName, String lastName, double salary, Integer department);
+    Employee deleteEmployee(String firstName, String lastName, double salary, Integer department);
+    Employee findEmployee(String firstName, String lastName, double salary, Integer department);
 
     Collection<Employee> findAll();
 }
