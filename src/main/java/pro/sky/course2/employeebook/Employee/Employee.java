@@ -6,10 +6,10 @@ public class Employee {
     private final String firstName;
     private final String lastName;
     private final Double salary;
-    private final Integer department;
+    private final int department;
 
 
-    public Employee(String firstName, String lastName, double salary, Integer department) {
+    public Employee(String firstName, String lastName, double salary, int department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;

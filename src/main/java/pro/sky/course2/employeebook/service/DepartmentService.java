@@ -9,13 +9,13 @@ import java.util.Map;
 @Service
 public interface DepartmentService {
 
-    Employee maxSalary(Integer department);
+    Employee maxSalary(int department);
 
-    Employee minSalary(Integer department);
+    Employee minSalary(int department);
 
 
     Map<Integer, List<Employee>> findAllByDepartment();
 
-    List<Employee> findAllByDepartment(Integer department);
+    List<Employee> findAllByDepartment(int department);
 
 }

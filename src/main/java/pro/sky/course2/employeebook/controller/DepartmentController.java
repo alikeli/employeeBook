@@ -22,15 +22,15 @@ public class DepartmentController {
     }
 
     @GetMapping("/max-salary")
-    public Employee maxSalary(@RequestParam ("max-salary") Integer department) {
+    public Employee maxSalary(@RequestParam ("max-salary") int department) {
         return departmentService.maxSalary(department);
     }
     @GetMapping("/min-salary")
-    public Employee minSalary(@RequestParam ("min-salary") Integer department) {
+    public Employee minSalary(@RequestParam ("min-salary") int department) {
         return departmentService.minSalary(department);
     }
     @GetMapping(value = "/all", params = "department")
-    public List<Employee> findAllByDepartment(@RequestParam("department") Integer department) {
+    public List<Employee> findAllByDepartment(@RequestParam("department") int department) {
         return departmentService.findAllByDepartment(department);
     }
     @GetMapping(value = "/all")
