@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
     private final EmployeeService employeeService;
@@ -17,11 +18,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
 
-
     @Override
     public Employee maxSalary(Integer department) {
         return employeeService.findAll().stream()
-                .filter(employee -> employee.getDepartment().equals(department))
+                .filter(employee -> employee.getDepartment() == department)
                 .max(Comparator.comparing(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
@@ -29,7 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Employee minSalary(Integer department) {
         return employeeService.findAll().stream()
-                .filter(employee -> employee.getDepartment().equals(department))
+                .filter(employee -> employee.getDepartment() == department)
                 .min(Comparator.comparingDouble(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
@@ -37,7 +37,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Employee> findAllByDepartment(Integer department) {
         return employeeService.findAll().stream()
-                .filter(employee -> employee.getDepartment().equals(department))
+                .filter(employee -> employee.getDepartment() == department)
                 .collect(Collectors.toList());
     }
 
