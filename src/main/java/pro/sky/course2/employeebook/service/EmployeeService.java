@@ -9,5 +9,7 @@ public interface EmployeeService {
     Employee deleteEmployee(String firstName, String lastName, double salary, Integer department);
     Employee findEmployee(String firstName, String lastName, double salary, Integer department);
 
+    void validateFirstLatter(String firstName, String lastName);
+
     Collection<Employee> findAll();
 }
