@@ -34,8 +34,8 @@ public class DepartmentController {
         return departmentService.findAllByDepartment(department);
     }
     @GetMapping(value = "/all")
-    public Map<Integer, List<Employee>> findAllByDepartment() {
-        return departmentService.findAllByDepartment();
+    public Map<Integer, List<Employee>> groupAllByDepartment() {
+        return departmentService.groupAllByDepartment();
     }
 }
 
