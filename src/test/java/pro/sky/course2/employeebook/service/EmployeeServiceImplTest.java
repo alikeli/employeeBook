@@ -20,11 +20,11 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class EmployeeServiceImplTest {
     private final EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-    //    @AfterEach
-//    public void afterEach()  {
-//        employeeService.findAll().forEach(employee -> employeeService.deleteEmployee(employee.getFirstName(),
-//                employee.getLastName(),employee.getSalary(), employee.getDepartment()));
-//    }
+        @AfterEach
+    public void afterEach()  {
+        employeeService.findAll().forEach(employee -> employeeService.deleteEmployee(employee.getFirstName(),
+                employee.getLastName(),employee.getSalary(), employee.getDepartment()));
+    }
     @Test
     public void shouldThrowEmployeeNotFoundExceptionWhenListIsEmptyTest() {
         assertThatExceptionOfType(EmployeeNotFoundException.class).isThrownBy(() -> employeeService.findEmployee("empty", "empty", 0, 0));

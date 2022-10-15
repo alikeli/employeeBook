@@ -14,14 +14,14 @@ import pro.sky.course2.employeebook.Employee.Employee;
 import pro.sky.course2.employeebook.exceptions.EmployeeNotFoundException;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -83,14 +83,45 @@ public class DepartmentServiceImplTest {
         assertThatExceptionOfType(EmployeeNotFoundException.class).isThrownBy(() -> departmentServiceImpl.minSalary(2));
     }
 
+    @ParameterizedTest
+    @MethodSource("provideParamsForFindAllByDepartmentTest")
+    public void shouldFindAllByDepartmentTest(int department, Collection<Employee> employee) {
+        assertThat(departmentServiceImpl.findAllByDepartment(department)).containsExactlyInAnyOrderElementsOf(employee);
+    }
+
+    public static Stream<Arguments> provideParamsForFindAllByDepartmentTest() {
+        return Stream.of(
+                Arguments.of(2, Collections.emptyList()),
+                Arguments.of(4, List.of(
+                        new Employee("Jane", "Doe", 1500, 4),
+                        new Employee("John", "Dee", 4500, 4),
+                        new Employee("Dan", "Dlo", 9500, 4)
+
+                )),
+                Arguments.of(3, List.of(
+                        new Employee("Jane", "Dare", 5500, 3),
+                        new Employee("Jane", "Dael", 8500, 3)))
+        );
+    }
 
     @Test
-    public void shouldGroupAllByDepartment() {
-        assertThat(departmentServiceImpl.().containsExactlyInAnyOrderEntriesOf(Map.of(
-        ))
+    public void shouldGroupAllByDepartmentTest() {
+        assertThat(departmentServiceImpl.groupAllByDepartment()).containsExactlyInAnyOrderEntriesOf(
+                Map.of(4, List.of(
+                        new Employee("Jane", "Doe", 1500, 4),
+                        new Employee("John", "Dee", 4500, 4),
+                        new Employee("Dan", "Dlo", 9500, 4)
 
+                ),
+                        3, List.of(
+                        new Employee("Jane", "Dare", 5500, 3),
+                        new Employee("Jane", "Dael", 8500, 3)
+                        ),
+                        1, List.of(new Employee("John", "Dae", 4200, 1))
+                )
+        );
 
-    ;}
+    }
 
 
 }
