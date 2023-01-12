@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee addEmployee(String firstName, String lastName, double salary, Integer department) {
-        validateFirstLatter(firstName, lastName);
+        validateLatter(firstName, lastName);
 
         Employee employee = new Employee(firstName, lastName, salary, department);
         if (employees.containsKey(employee.getFullName())) {
@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee deleteEmployee(String firstName, String lastName, double salary, Integer department) {
-        validateFirstLatter(firstName, lastName);
+        validateLatter(firstName, lastName);
 
         Employee employee = new Employee(firstName, lastName, salary, department);
         if (employees.containsKey(employee.getFullName())) {
@@ -50,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployee(String firstName, String lastName, double salary, Integer department) {
-        validateFirstLatter(firstName, lastName);
+        validateLatter(firstName, lastName);
 
         Employee employee = new Employee(firstName, lastName, salary, department);
         if (employees.containsKey(employee.getFullName())) {
@@ -60,7 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void validateFirstLatter(String firstName, String lastName) {
+    public void validateLatter(String firstName, String lastName) {
         if (!(isAlpha(firstName) && isAlpha(lastName))) {
             throw new InvalidInputException();
         }
@@ -69,6 +69,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<Employee> findAll() {
-        return Collections.unmodifiableCollection(employees.values());
+        return new ArrayList<>(employees.values());
     }
 }
